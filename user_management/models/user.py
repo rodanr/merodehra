@@ -11,7 +11,7 @@ class UserModel(db.Model):
     email = db.Column(db.String(80), unique=True, nullable=False)
     # Mobile numbers are only 10 digit long excluding the country codes
     mobile_number = db.Column(db.String(10), unique=True, nullable=False)
-    password = db.Column(db.String(80), nullable=False)
+    password = db.Column(db.String, nullable=False)
 
     def __init__(self, username, email, mobile_number, password):
         self.username = username
