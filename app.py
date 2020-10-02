@@ -12,7 +12,8 @@ api = Api(app)
 app.config[
     'SQLALCHEMY_DATABASE_URI'] = HEROKU_POSTGRES_URL
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
+db.init_app(app)
+ma.init_app(app)
 
 @app.before_first_request
 def create_tables():
@@ -27,6 +28,4 @@ api.add_resource(UserEmailChange, '/change-email')
 api.add_resource(UserMobileNumberChange, '/change-mobile-number')
 
 if __name__ == '__main__':
-    db.init_app(app)
-    ma.init_app(app)
     app.run(port=5000, debug=True)
