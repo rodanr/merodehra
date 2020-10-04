@@ -6,7 +6,7 @@ from user_management.resources.user import UserSignUp, UserLogin, UserPasswordCh
     UserMobileNumberChange
 
 HEROKU_POSTGRES_URL = 'postgres://aculeptjtivfxw:f59a97935e203b20e111d3494275b3a2ba3285a09b5aeb67fd43799a80a5e997@ec2-54-164-134-207.compute-1.amazonaws.com:5432/dfsk7g8tc3sgvn'
-TEST_DATABASE_SQL_LITE_URL = 'sqlite:///data.db'
+# TEST_DATABASE_SQL_LITE_URL = 'sqlite:///data.db'
 app = Flask(__name__)
 api = Api(app)
 app.config[
@@ -14,6 +14,7 @@ app.config[
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 ma.init_app(app)
+
 
 @app.before_first_request
 def create_tables():

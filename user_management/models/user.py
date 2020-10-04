@@ -11,7 +11,7 @@ class UserModel(db.Model):
     email = db.Column(db.String(80), unique=True, nullable=False)
     # Mobile numbers are only 10 digit long excluding the country codes
     mobile_number = db.Column(db.String(10), unique=True, nullable=False)
-    password = db.Column(db.String, nullable=False)
+    password = db.Column(db.String(80), nullable=False)
 
     def __init__(self, username, email, mobile_number, password):
         self.username = username
@@ -26,6 +26,14 @@ class UserModel(db.Model):
     @classmethod
     def find_by_id(cls, user_id: int) -> "UserModel":
         return cls.query.filter_by(user_id=user_id).first()
+
+    @classmethod
+    def find_by_mobile_number(cls, mobile_number: str) -> "UserModel":
+        return cls.query.filter_by(mobile_number=mobile_number).first()
+
+    @classmethod
+    def find_by_email(cls, email: int) -> "UserModel":
+        return cls.query.filter_by(email=email).first()
 
     def save_to_db(self) -> None:
         db.session.add(self)

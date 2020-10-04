@@ -31,11 +31,16 @@ class UserSignUp(Resource):
         user_sign_up_json = request.get_json()
         user_data_for_sign_up = user_sign_up_schema.load(user_sign_up_json)
         user = UserModel(user_data_for_sign_up['username'], user_data_for_sign_up['email'],
-                         user_data_for_sign_up['mobile_number'], generate_password_hash(user_data_for_sign_up['password']))
+                         user_data_for_sign_up['mobile_number'],
+                         generate_password_hash(user_data_for_sign_up['password']))
         if UserModel.find_by_username(user.username):
             return {"message": USER_ALREADY_EXISTS}, 400
+        if UserModel.find_by_mobile_number(user.mobile_number):
+            return {"message": "Mobile Number Already Registered"}, 400
+        if UserModel.find_by_email(user.email):
+            return {"message": "Email Already Registered"}, 400
         user.save_to_db()
-        return {"message": CREATED_SUCCESSFULLY}, 201
+        return {"message": CREATED_SUCCESSFULLY}, 200
 
 
 class UserLogin(Resource):
@@ -47,7 +52,7 @@ class UserLogin(Resource):
         user = UserModel.find_by_username(user_data['username'])
         if user and check_password_hash(user.password, user_data['password']):
             return {'message': LOGGED_IN_SUCCESSFULLY}
-        return {'message': INVALID_CREDENTIALS}, 401
+        return {'message': INVALID_CREDENTIALS}, 400
 
 
 class UserPasswordChange(Resource):
@@ -76,8 +81,8 @@ class UserEmailChange(Resource):
         if user.password and check_password_hash(user.password, user_data_for_email_change['password']):
             user.email = user_data_for_email_change['new_email']
             user.save_to_db()
-            return {'message': EMAIL_CHANGED_SUCCESSFULLY}
-        return {'message': INVALID_CREDENTIALS}
+            return {'message': EMAIL_CHANGED_SUCCESSFULLY}, 200
+        return {'message': INVALID_CREDENTIALS}, 400
 
 
 class UserMobileNumberChange(Resource):
@@ -91,5 +96,5 @@ class UserMobileNumberChange(Resource):
         if user.password and check_password_hash(user.password, user_data_for_mobile_number_change['password']):
             user.mobile_number = user_data_for_mobile_number_change['new_mobile_number']
             user.save_to_db()
-            return {'message': MOBILE_NUMBER_CHANGED_SUCCESSFULLY}
-        return {'message': INVALID_CREDENTIALS}
+            return {'message': MOBILE_NUMBER_CHANGED_SUCCESSFULLY}, 200
+        return {'message': INVALID_CREDENTIALS}, 400
