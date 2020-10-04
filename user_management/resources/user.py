@@ -51,7 +51,12 @@ class UserLogin(Resource):
 
         user = UserModel.find_by_username(user_data['username'])
         if user and check_password_hash(user.password, user_data['password']):
-            return {'message': LOGGED_IN_SUCCESSFULLY}
+            return {
+                       'message': LOGGED_IN_SUCCESSFULLY,
+                       'username': user.username,
+                       'email': user.email,
+                       'mobile_number': user.mobile_number,
+                   }, 200
         return {'message': INVALID_CREDENTIALS}, 400
 
 
