@@ -1,4 +1,5 @@
 from db import db
+from advertisement_management.models.advertisement import AdvertisementModel
 
 
 class UserModel(db.Model):
@@ -12,6 +13,7 @@ class UserModel(db.Model):
     # Mobile numbers are only 10 digit long excluding the country codes
     mobile_number = db.Column(db.String(10), unique=True, nullable=False)
     password = db.Column(db.String(80), nullable=False)
+    advertisements = db.relationship('AdvertisementModel', backref='user', lazy=True)
 
     def __init__(self, username, email, mobile_number, password):
         self.username = username
@@ -25,7 +27,7 @@ class UserModel(db.Model):
 
     @classmethod
     def find_by_id(cls, user_id: int) -> "UserModel":
-        return cls.query.filter_by(user_id=user_id).first()
+        return cls.query.filter_by(id=user_id).first()
 
     @classmethod
     def find_by_mobile_number(cls, mobile_number: str) -> "UserModel":

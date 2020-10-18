@@ -4,9 +4,10 @@ from db import db
 from ma import ma
 from user_management.resources.user import UserSignUp, UserLogin, UserPasswordChange, UserEmailChange, \
     UserMobileNumberChange
+from advertisement_management.resources.advertisement import PostAdvertisement, GetAdvertisementLists
 
 HEROKU_POSTGRES_URL = 'postgres://aculeptjtivfxw:f59a97935e203b20e111d3494275b3a2ba3285a09b5aeb67fd43799a80a5e997@ec2-54-164-134-207.compute-1.amazonaws.com:5432/dfsk7g8tc3sgvn'
-# TEST_DATABASE_SQL_LITE_URL = 'sqlite:///data.db'
+TEST_DATABASE_SQL_LITE_URL = 'sqlite:///data.db'
 app = Flask(__name__)
 api = Api(app)
 app.config[
@@ -27,6 +28,10 @@ api.add_resource(UserLogin, '/login')
 api.add_resource(UserPasswordChange, '/change-password')
 api.add_resource(UserEmailChange, '/change-email')
 api.add_resource(UserMobileNumberChange, '/change-mobile-number')
+
+# advertisement_management api list
+api.add_resource(PostAdvertisement, '/advertisement')
+api.add_resource(GetAdvertisementLists, '/search')
 
 if __name__ == '__main__':
     app.run(port=5000, debug=True)

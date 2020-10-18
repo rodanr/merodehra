@@ -5,5 +5,4 @@ Flask-RESTful==0.3.8
 Flask-SQLAlchemy==2.4.4
 marshmallow==3.8.0
 marshmallow-sqlalchemy==0.23.1
-psycopg2==2.8.6
-gunicorn
+psycopg2-binary

@@ -13,7 +13,7 @@ user_email_change_schema = UserEmailChange()
 user_mobile_number_change_schema = UserMobileNumberChange()
 
 # Messages
-USER_ALREADY_EXISTS = "A user with that username already exists."
+USER_ALREADY_EXISTS = "A user with this username already exists."
 CREATED_SUCCESSFULLY = "User created successfully."
 USER_NOT_FOUND = "User doesn\'t exist"
 USER_DELETED = "User deleted."
@@ -53,6 +53,7 @@ class UserLogin(Resource):
         if user and check_password_hash(user.password, user_data['password']):
             return {
                        'message': LOGGED_IN_SUCCESSFULLY,
+                       'user_id': user.id,
                        'username': user.username,
                        'email': user.email,
                        'mobile_number': user.mobile_number,
