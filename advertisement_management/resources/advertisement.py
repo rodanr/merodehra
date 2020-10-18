@@ -45,7 +45,8 @@ class GetAdvertisementLists(Resource):
                     "property_type": advertisement.property_type,
                     "property_address":advertisement.property_address,
                     "room_count":advertisement.room_count,
-                    "user_id":advertisement.user_id
+                    "user_id":advertisement.user_id,
+                    "username":advertisement.user.username
                 }
             )
             
