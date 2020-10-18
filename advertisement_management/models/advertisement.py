@@ -7,8 +7,8 @@ class AdvertisementModel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)  # user_id who created this advertisement
     property_type = db.Column(db.String(10), nullable=False)  # Either its flat or room
-    property_address = db.Column(db.String(20), nullable=False)  # Property's general address
-    geo_location = db.Column(db.String(20), nullable=False)  # Geographical location of property i.e lat & long
+    property_address = db.Column(db.String(100), nullable=False)  # Property's general address
+    geo_location = db.Column(db.String(100), nullable=False)  # Geographical location of property i.e lat & long
     room_count = db.Column(db.Integer, nullable=False)  # Number of rooms
     price = db.Column(db.Float, nullable=False)  # Price of the property
     description = db.Column(db.String, nullable=False)  # Description about the property owner wants to tell
