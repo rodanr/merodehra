@@ -31,7 +31,7 @@ api.add_resource(UserMobileNumberChange, '/change-mobile-number')
 
 # advertisement_management api list
 api.add_resource(PostAdvertisement, '/advertisement')
-api.add_resource(GetAdvertisementLists, '/search')
+api.add_resource(GetAdvertisementLists, '/search/<string:location_to_search>')
 
 if __name__ == '__main__':
     app.run(port=5000, debug=True)

@@ -27,10 +27,10 @@ class PostAdvertisement(Resource):
 
 class GetAdvertisementLists(Resource):
     @classmethod
-    def get(cls):
-        location_to_search_json = request.get_json()
-        location_to_search_data = search_advertisement_schema.load(location_to_search_json)
-        location_to_search = location_to_search_data['location_to_search']
+    def get(cls, location_to_search):
+        #location_to_search_json = request.get_json()
+        #location_to_search_data = search_advertisement_schema.load(location_to_search_json)
+        #location_to_search = location_to_search_data['location_to_search']
         # Returns list of AdvertisementModel Object so, we cannot pass it directly and needs to be \
         # converted into json or dictionary or simple list
         advertisement_lists = AdvertisementModel.get_advertisement_lists_by_location(location_to_search)
