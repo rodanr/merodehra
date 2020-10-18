@@ -33,11 +33,11 @@ class GetAdvertisementLists(Resource):
         #location_to_search = location_to_search_data['location_to_search']
         # Returns list of AdvertisementModel Object so, we cannot pass it directly and needs to be \
         # converted into json or dictionary or simple list
-        advertisement_lists = AdvertisementModel.get_advertisement_lists_by_location(location_to_search)
+        advertisement_list = AdvertisementModel.get_advertisement_lists_by_location(location_to_search)
         print(location_to_search)
         # generating dictionary
         advertisements_found = []
-        for advertisement in advertisement_lists:
+        for advertisement in advertisement_list:
             advertisements_found.append(
                 {
                     "advertisement_id":advertisement.id,
@@ -50,4 +50,4 @@ class GetAdvertisementLists(Resource):
                 }
             )
             
-        return {"advertisement_lists": advertisements_found}, 200
+        return {"advertisement_list": advertisements_found}, 200
