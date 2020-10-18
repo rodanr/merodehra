@@ -6,3 +6,4 @@ Flask-SQLAlchemy==2.4.4
 marshmallow==3.8.0
 marshmallow-sqlalchemy==0.23.1
 psycopg2-binary
+gunicorn
