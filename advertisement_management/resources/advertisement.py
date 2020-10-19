@@ -88,4 +88,4 @@ class GetSingleAdvertisement(Resource):
             "bathroom": advertisement.bathroom,
             "terrace_access": advertisement.terrace_access,
             "username": advertisement.user.username,
-        }
+        }, 200
