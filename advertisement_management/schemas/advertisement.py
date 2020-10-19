@@ -13,4 +13,3 @@ class AdvertisementSchema(ma.SQLAlchemyAutoSchema):
 class SearchAdvertisementSchema(ma.Schema):
     class Meta:
         fields = ("location_to_search",)
-        

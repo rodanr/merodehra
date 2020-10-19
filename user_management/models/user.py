@@ -3,7 +3,7 @@ from advertisement_management.models.advertisement import AdvertisementModel
 
 
 class UserModel(db.Model):
-    __tablename__ = 'users'
+    __tablename__ = "users"
     # set only one column as primary key otherwise multiple primary key in one table may trouble in sqlite
     # id = db.Column(db.Integer, primary_key=True, autoincrement=True, nullable=False)
     id = db.Column(db.Integer, primary_key=True)
@@ -13,7 +13,7 @@ class UserModel(db.Model):
     # Mobile numbers are only 10 digit long excluding the country codes
     mobile_number = db.Column(db.String(10), unique=True, nullable=False)
     password = db.Column(db.String, nullable=False)
-    advertisements = db.relationship('AdvertisementModel', backref='user', lazy=True)
+    advertisements = db.relationship("AdvertisementModel", backref="user", lazy=True)
 
     def __init__(self, username, email, mobile_number, password):
         self.username = username
