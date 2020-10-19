@@ -79,7 +79,7 @@ class GetSingleAdvertisement(Resource):
         return {
             "user_id": advertisement.user_id,
             "property_type": advertisement.property_type,
-            "property_address": advertisement.property_type,
+            "property_address": advertisement.property_address,
             "geo_location": advertisement.geo_location,
             "room_count": advertisement.room_count,
             "price": advertisement.price,
