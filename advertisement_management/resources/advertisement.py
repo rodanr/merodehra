@@ -108,4 +108,4 @@ class GetAdvertisementListsByUserId(Resource):
                     "username": advertisement.user.username,
                 }
             )
-            return {"advertisement_list": advertisements_found}, 200
+        return {"advertisement_list": advertisements_found}, 200
