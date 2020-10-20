@@ -19,7 +19,7 @@ HEROKU_POSTGRES_URL = "postgres://aculeptjtivfxw:f59a97935e203b20e111d3494275b3a
 TEST_DATABASE_SQL_LITE_URL = "sqlite:///data.db"
 app = Flask(__name__)
 api = Api(app)
-app.config["SQLALCHEMY_DATABASE_URI"] = HEROKU_POSTGRES_URL
+app.config["SQLALCHEMY_DATABASE_URI"] = TEST_DATABASE_SQL_LITE_URL
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db.init_app(app)
 ma.init_app(app)

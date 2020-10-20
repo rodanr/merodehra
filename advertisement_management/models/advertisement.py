@@ -60,7 +60,8 @@ class AdvertisementModel(db.Model):
 
     @classmethod
     def get_advertisement_lists_by_location(cls, location_to_search: str) -> list:
-        return cls.query.filter_by(property_address=location_to_search).all()
+        location_to_search_string = "%{}%".format(location_to_search)
+        return cls.query.filter(AdvertisementModel.property_address.like(location_to_search_string)).all()
 
     def save_to_db(self) -> None:
         db.session.add(self)
