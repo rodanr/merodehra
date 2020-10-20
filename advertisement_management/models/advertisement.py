@@ -56,12 +56,14 @@ class AdvertisementModel(db.Model):
     def find_by_user_id(
         cls, user_id: int
     ) -> list:  # List of AdvertisementModel objects
-        return cls.query.filter_by(user_id=user_id)
+        return cls.query.filter_by(user_id=user_id).all()
 
     @classmethod
     def get_advertisement_lists_by_location(cls, location_to_search: str) -> list:
         location_to_search_string = "%{}%".format(location_to_search)
-        return cls.query.filter(AdvertisementModel.property_address.like(location_to_search_string)).all()
+        return cls.query.filter(
+            AdvertisementModel.property_address.ilike(location_to_search_string)
+        ).all()
 
     def save_to_db(self) -> None:
         db.session.add(self)

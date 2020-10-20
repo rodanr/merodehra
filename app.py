@@ -13,6 +13,7 @@ from advertisement_management.resources.advertisement import (
     PostAdvertisement,
     GetAdvertisementLists,
     GetSingleAdvertisement,
+    GetAdvertisementListsByUserId,
 )
 
 HEROKU_POSTGRES_URL = "postgres://aculeptjtivfxw:f59a97935e203b20e111d3494275b3a2ba3285a09b5aeb67fd43799a80a5e997@ec2-54-164-134-207.compute-1.amazonaws.com:5432/dfsk7g8tc3sgvn"
@@ -41,5 +42,6 @@ api.add_resource(UserMobileNumberChange, "/change-mobile-number")
 api.add_resource(PostAdvertisement, "/advertisement")
 api.add_resource(GetAdvertisementLists, "/search/<string:location_to_search>")
 api.add_resource(GetSingleAdvertisement, "/advertisement/<int:advertisement_id>")
+api.add_resource(GetAdvertisementListsByUserId, "/advertisement/user/<int:user_id>")
 if __name__ == "__main__":
     app.run(port=5000, debug=True)

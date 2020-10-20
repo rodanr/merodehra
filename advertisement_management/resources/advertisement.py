@@ -53,7 +53,7 @@ class GetAdvertisementLists(Resource):
         advertisement_list = AdvertisementModel.get_advertisement_lists_by_location(
             location_to_search
         )
-        print(location_to_search)
+        # print(location_to_search)
         # generating dictionary
         advertisements_found = []
         for advertisement in advertisement_list:
@@ -89,3 +89,23 @@ class GetSingleAdvertisement(Resource):
             "terrace_access": advertisement.terrace_access,
             "username": advertisement.user.username,
         }, 200
+
+
+class GetAdvertisementListsByUserId(Resource):
+    @classmethod
+    def get(cls, user_id):
+        advertisement_list = AdvertisementModel.find_by_user_id(user_id)
+        advertisements_found = []
+        for advertisement in advertisement_list:
+            advertisements_found.append(
+                {
+                    "advertisement_id": advertisement.id,
+                    "price": advertisement.price,
+                    "property_type": advertisement.property_type,
+                    "property_address": advertisement.property_address,
+                    "room_count": advertisement.room_count,
+                    "user_id": advertisement.user_id,
+                    "username": advertisement.user.username,
+                }
+            )
+            return {"advertisement_list": advertisements_found}, 200
