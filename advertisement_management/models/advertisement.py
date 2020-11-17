@@ -1,4 +1,5 @@
 from db import db
+from permission_handler.models.permission_handler import PermissionHandlerModel
 
 
 class AdvertisementModel(db.Model):
@@ -23,6 +24,9 @@ class AdvertisementModel(db.Model):
     water_source = db.Column(db.String(80), nullable=False)  # Like Well, boring or tap
     bathroom = db.Column(db.String(80), nullable=False)  # Shared or Private
     terrace_access = db.Column(db.Boolean, nullable=False)
+    permissions = db.relationship(
+        "PermissionHandlerModel", backref="advertisement", lazy=True
+    )
 
     def __init__(
         self,

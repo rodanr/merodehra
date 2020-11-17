@@ -1,5 +1,6 @@
 from db import db
 from advertisement_management.models.advertisement import AdvertisementModel
+from permission_handler.models.permission_handler import PermissionHandlerModel
 
 
 class UserModel(db.Model):
@@ -14,6 +15,7 @@ class UserModel(db.Model):
     mobile_number = db.Column(db.String(10), unique=True, nullable=False)
     password = db.Column(db.String, nullable=False)
     advertisements = db.relationship("AdvertisementModel", backref="user", lazy=True)
+    permissions = db.relationship("PermissionHandlerModel", backref="user", lazy=True)
 
     def __init__(self, username, email, mobile_number, password):
         self.username = username

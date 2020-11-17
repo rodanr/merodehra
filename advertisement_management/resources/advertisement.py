@@ -29,9 +29,9 @@ class PostAdvertisement(Resource):
             advertisement_data["terrace_access"],
         )
         advertisement.save_to_db()
-        # We can only use the backref now i.e advertisement.user as after putting the user_id foreign key
-        # then only flask-sqlalchemy can identify user object using the foreign key as there is no magic
-        # and sqlalchemy needs to know the foreign key value and then search in the table for back ref using that foreign key
+        # We can only use the backref now i.e advertisement.user as after putting the user_id foreign key then only
+        # flask-sqlalchemy can identify user object using the foreign key as there is no magic and sqlalchemy needs
+        # to know the foreign key value and then search in the table for back ref using that foreign key
         print(
             advertisement.user.mobile_number
             + "\n"
