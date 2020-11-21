@@ -21,6 +21,9 @@ class AdvertisementModel(db.Model):
     description = db.Column(
         db.String, nullable=False
     )  # Description about the property owner wants to tell
+    photo = db.Column(
+        db.String, nullable=False
+    )  # Store the address of image for the advertisement uploaded in firebase storage
     water_source = db.Column(db.String(80), nullable=False)  # Like Well, boring or tap
     bathroom = db.Column(db.String(80), nullable=False)  # Shared or Private
     terrace_access = db.Column(db.Boolean, nullable=False)
@@ -37,6 +40,7 @@ class AdvertisementModel(db.Model):
         room_count,
         price,
         description,
+        photo,
         water_source,
         bathroom,
         terrace_access,
@@ -48,6 +52,7 @@ class AdvertisementModel(db.Model):
         self.room_count = room_count
         self.price = price
         self.description = description
+        self.photo = photo
         self.water_source = water_source
         self.bathroom = bathroom
         self.terrace_access = terrace_access

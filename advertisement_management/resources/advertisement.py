@@ -24,6 +24,7 @@ class PostAdvertisement(Resource):
             advertisement_data["room_count"],
             advertisement_data["price"],
             advertisement_data["description"],
+            advertisement_data["photo"],
             advertisement_data["water_source"],
             advertisement_data["bathroom"],
             advertisement_data["terrace_access"],
@@ -32,13 +33,13 @@ class PostAdvertisement(Resource):
         # We can only use the backref now i.e advertisement.user as after putting the user_id foreign key then only
         # flask-sqlalchemy can identify user object using the foreign key as there is no magic and sqlalchemy needs
         # to know the foreign key value and then search in the table for back ref using that foreign key
-        print(
-            advertisement.user.mobile_number
-            + "\n"
-            + advertisement.user.username
-            + "\n"
-            + advertisement.user.email
-        )
+        # print(
+        #     advertisement.user.mobile_number
+        #     + "\n"
+        #     + advertisement.user.username
+        #     + "\n"
+        #     + advertisement.user.email
+        # )
         return {"message": "Advertisement Successfully added"}, 200
 
 
@@ -84,6 +85,7 @@ class GetSingleAdvertisement(Resource):
             "room_count": advertisement.room_count,
             "price": advertisement.price,
             "description": advertisement.description,
+            "photo": advertisement.photo,
             "water_source": advertisement.water_source,
             "bathroom": advertisement.bathroom,
             "terrace_access": advertisement.terrace_access,

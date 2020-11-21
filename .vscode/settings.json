@@ -1,0 +1,4 @@
+{
+    "python.pythonPath": "/home/rodan0818/Codes/merodehra/venv_merodehra/bin/python3",
+    "python.formatting.provider": "black"
+}
