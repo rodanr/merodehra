@@ -85,6 +85,13 @@ class UploadProfilePicture(Resource):
         return {"message": PROFILE_PICTURE_UPLOADED_SUCCESSFULLY}, 200
 
 
+class getProfilePicture(Resource):
+    @classmethod
+    def get(cls, user_id):
+        user = UserModel.find_by_id(user_id)
+        return {"photo": user.photo}, 200
+
+
 class UserPasswordChange(Resource):
     @classmethod
     def post(cls):

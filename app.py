@@ -9,6 +9,7 @@ from user_management.resources.user import (
     UserEmailChange,
     UserMobileNumberChange,
     UploadProfilePicture,
+    getProfilePicture,
 )
 from advertisement_management.resources.advertisement import (
     PostAdvertisement,
@@ -43,6 +44,7 @@ api.add_resource(UserPasswordChange, "/change-password")
 api.add_resource(UserEmailChange, "/change-email")
 api.add_resource(UserMobileNumberChange, "/change-mobile-number")
 api.add_resource(UploadProfilePicture, "/upload-profile-picture")
+api.add_resource(getProfilePicture, "/get-profile-picture/<int:user_id>")
 
 # advertisement_management api list
 api.add_resource(PostAdvertisement, "/advertisement")
