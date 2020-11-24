@@ -14,6 +14,7 @@ class UserModel(db.Model):
     # Mobile numbers are only 10 digit long excluding the country codes
     mobile_number = db.Column(db.String(10), unique=True, nullable=False)
     password = db.Column(db.String, nullable=False)
+    photo = db.Column(db.String, nullable=True)
     advertisements = db.relationship("AdvertisementModel", backref="user", lazy=True)
     permissions = db.relationship("PermissionHandlerModel", backref="user", lazy=True)
 

@@ -28,6 +28,7 @@ class PostAdvertisement(Resource):
             advertisement_data["water_source"],
             advertisement_data["bathroom"],
             advertisement_data["terrace_access"],
+            advertisement_data["sold_status"],
         )
         advertisement.save_to_db()
         # We can only use the backref now i.e advertisement.user as after putting the user_id foreign key then only
@@ -111,3 +112,9 @@ class GetAdvertisementListsByUserId(Resource):
                 }
             )
         return {"advertisement_list": advertisements_found}, 200
+
+
+class ChangeAdvertisementSoldStatus(Resource):
+    @classmethod
+    def post(cls):
+        pass

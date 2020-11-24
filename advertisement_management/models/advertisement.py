@@ -27,6 +27,7 @@ class AdvertisementModel(db.Model):
     water_source = db.Column(db.String(80), nullable=False)  # Like Well, boring or tap
     bathroom = db.Column(db.String(80), nullable=False)  # Shared or Private
     terrace_access = db.Column(db.Boolean, nullable=False)
+    sold_status = db.Column(db.Boolean, nullable=False)
     permissions = db.relationship(
         "PermissionHandlerModel", backref="advertisement", lazy=True
     )
@@ -44,6 +45,7 @@ class AdvertisementModel(db.Model):
         water_source,
         bathroom,
         terrace_access,
+        sold_status,
     ):
         self.user_id = user_id
         self.property_type = property_type
@@ -56,6 +58,7 @@ class AdvertisementModel(db.Model):
         self.water_source = water_source
         self.bathroom = bathroom
         self.terrace_access = terrace_access
+        self.sold_status = sold_status
 
     @classmethod
     def find_by_id(cls, advertisement_id: int) -> "AdvertisementModel":

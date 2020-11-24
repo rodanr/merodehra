@@ -8,6 +8,7 @@ from user_management.schemas.user import (
     UserPasswordChangeSchema,
     UserEmailChange,
     UserMobileNumberChange,
+    UploadProfilePicture,
 )
 
 # Instances of schemas
@@ -16,6 +17,7 @@ user_log_in_schema = UserLogInSchema()
 user_password_change_schema = UserPasswordChangeSchema()
 user_email_change_schema = UserEmailChange()
 user_mobile_number_change_schema = UserMobileNumberChange()
+user_profile_picture_upload_schema = UploadProfilePicture()
 
 # Messages
 USER_ALREADY_EXISTS = "A user with this username already exists."
@@ -28,6 +30,7 @@ LOGGED_IN_SUCCESSFULLY = "Logged In Successfully"
 INCORRECT_OLD_PASSWORD = "Incorrect Old Password"
 EMAIL_CHANGED_SUCCESSFULLY = "Email Changed Successfully"
 MOBILE_NUMBER_CHANGED_SUCCESSFULLY = "Mobile Number Changed Successfully"
+PROFILE_PICTURE_UPLOADED_SUCCESSFULLY = "Profile Picture Uploaded Success Fully"
 
 
 class UserSignUp(Resource):
@@ -67,6 +70,19 @@ class UserLogin(Resource):
                 "mobile_number": user.mobile_number,
             }, 200
         return {"message": INVALID_CREDENTIALS}, 400
+
+
+class UploadProfilePicture(Resource):
+    @classmethod
+    def post(cls):
+        user_profile_picture_url_json = request.get_json()
+        user_profile_picture_url_data = user_profile_picture_upload_schema.load(
+            user_profile_picture_url_json
+        )
+        user = UserModel.find_by_id(user_profile_picture_url_data["user_id"])
+        user.photo = user_profile_picture_url_data["photo"]
+        user.save_to_db()
+        return {"message": PROFILE_PICTURE_UPLOADED_SUCCESSFULLY}, 200
 
 
 class UserPasswordChange(Resource):

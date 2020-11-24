@@ -8,6 +8,7 @@ from user_management.resources.user import (
     UserPasswordChange,
     UserEmailChange,
     UserMobileNumberChange,
+    UploadProfilePicture,
 )
 from advertisement_management.resources.advertisement import (
     PostAdvertisement,
@@ -34,12 +35,14 @@ ma.init_app(app)
 def create_tables():
     db.create_all()
 
+
 # user_management api list
 api.add_resource(UserSignUp, "/signup")
 api.add_resource(UserLogin, "/login")
 api.add_resource(UserPasswordChange, "/change-password")
 api.add_resource(UserEmailChange, "/change-email")
 api.add_resource(UserMobileNumberChange, "/change-mobile-number")
+api.add_resource(UploadProfilePicture, "/upload-profile-picture")
 
 # advertisement_management api list
 api.add_resource(PostAdvertisement, "/advertisement")

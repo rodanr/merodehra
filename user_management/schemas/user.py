@@ -6,7 +6,7 @@ class UserSignUpSchema(ma.SQLAlchemySchema):
     class Meta:
         model = UserModel
         load_only = ("password",)
-        dump_only = ("id",)
+        dump_only = ("id", "photo")
 
     # This auto fielding code can be removed by putting ma.SQLAlchemyAutoSchema instead of ma.SQLAlchemySchema
     id = ma.auto_field()
@@ -18,23 +18,46 @@ class UserSignUpSchema(ma.SQLAlchemySchema):
 
 class UserLogInSchema(ma.Schema):
     class Meta:
-        fields = ("username", "password")
+        fields = (
+            "username",
+            "password",
+        )
         load_only = ("password",)
 
 
 class UserPasswordChangeSchema(ma.Schema):
     class Meta:
-        fields = ("username", "old_password", "new_password")
+        fields = (
+            "username",
+            "old_password",
+            "new_password",
+        )
         load_only = ("old_password", "new_password")
 
 
 class UserEmailChange(ma.Schema):
     class Meta:
-        fields = ("username", "password", "new_email")
+        fields = (
+            "username",
+            "password",
+            "new_email",
+        )
         load_only = ("password",)
 
 
 class UserMobileNumberChange(ma.Schema):
     class Meta:
-        fields = ("username", "password", "new_mobile_number")
+        fields = (
+            "username",
+            "password",
+            "new_mobile_number",
+        )
         load_only = ("password",)
+
+
+class UploadProfilePicture(ma.Schema):
+    class Meta:
+        fields = (
+            "user_id",
+            "photo",
+        )
