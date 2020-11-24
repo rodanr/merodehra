@@ -59,7 +59,7 @@ class GetAdvertisementLists(Resource):
         # generating dictionary
         advertisements_found = []
         for advertisement in advertisement_list:
-            if advertisement.sold_status is false:
+            if advertisement.sold_status is False:
                 advertisements_found.append(
                     {
                         "advertisement_id": advertisement.id,
