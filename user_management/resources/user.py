@@ -89,6 +89,8 @@ class getProfilePicture(Resource):
     @classmethod
     def get(cls, user_id):
         user = UserModel.find_by_id(user_id)
+        if user.photo is None:
+            return {"photo": "NULL"}
         return {"photo": user.photo}, 200
 
 
