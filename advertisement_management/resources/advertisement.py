@@ -59,17 +59,18 @@ class GetAdvertisementLists(Resource):
         # generating dictionary
         advertisements_found = []
         for advertisement in advertisement_list:
-            advertisements_found.append(
-                {
-                    "advertisement_id": advertisement.id,
-                    "price": advertisement.price,
-                    "property_type": advertisement.property_type,
-                    "property_address": advertisement.property_address,
-                    "room_count": advertisement.room_count,
-                    "user_id": advertisement.user_id,
-                    "username": advertisement.user.username,
-                }
-            )
+            if advertisement.sold_status is false:
+                advertisements_found.append(
+                    {
+                        "advertisement_id": advertisement.id,
+                        "price": advertisement.price,
+                        "property_type": advertisement.property_type,
+                        "property_address": advertisement.property_address,
+                        "room_count": advertisement.room_count,
+                        "user_id": advertisement.user_id,
+                        "username": advertisement.user.username,
+                    }
+                )
 
         return {"advertisement_list": advertisements_found}, 200
 
@@ -109,6 +110,7 @@ class GetAdvertisementListsByUserId(Resource):
                     "room_count": advertisement.room_count,
                     "user_id": advertisement.user_id,
                     "username": advertisement.user.username,
+                    "sold_status": advertisement.sold_status,
                 }
             )
         return {"advertisement_list": advertisements_found}, 200
